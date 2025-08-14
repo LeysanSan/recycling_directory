@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+use App\Http\Controllers\FacilityController;
+
+Route::get('/', fn() => redirect()->route('facilities.index'));
+Route::resource('facilities', FacilityController::class);
+Route::get('facilities-export', [FacilityController::class, 'export'])->name('facilities.export');
